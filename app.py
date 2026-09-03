@@ -2,7 +2,7 @@
 import streamlit as st
 from datetime import date
 
-USER_MANUAL_URL = "https://raw.githubusercontent.com/sparkz00705/gxp-ai-readiness-governance/main/GxP_AI_Readiness_Governance_User_Manual.pdf"
+USER_MANUAL_URL = "https://YOUR-USER-MANUAL-LINK-HERE"
 
 st.set_page_config(
     page_title="GxP AI Readiness & Governance Assessment",
@@ -408,22 +408,8 @@ st.markdown(summary)
 st.download_button(
     "Download assessment summary",
     data=summary,
-    file_name="gxp_ai_readiness_assessment.pdf",
+    file_name="gxp_ai_readiness_assessment.md",
     mime="text/markdown",
 )
 
 st.caption("V2 prototype — keep this app in a separate repository/deployment from your existing live PM Risk & Issue Dashboard.")
-st.divider()
-
-st.markdown(
-    """
-    <div style="text-align:center; font-size:0.85rem;">
-        © 2026 Sriram Sampath | GxP AI Readiness & Governance Assessment<br>
-        Independent professional project |
-        <a href="https://www.linkedin.com/in/sriramsampath81/" target="_blank">
-            Connect with me on LinkedIn
-        </a>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
