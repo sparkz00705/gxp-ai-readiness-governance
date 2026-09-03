@@ -408,7 +408,7 @@ st.markdown(summary)
 st.download_button(
     "Download assessment summary",
     data=summary,
-    file_name="gxp_ai_readiness_assessment.md",
+    file_name="gxp_ai_readiness_assessment.pdf",
     mime="text/markdown",
 )
 
