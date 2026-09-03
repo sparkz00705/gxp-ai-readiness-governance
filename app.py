@@ -2,7 +2,7 @@
 import streamlit as st
 from datetime import date
 
-USER_MANUAL_URL = "https://YOUR-USER-MANUAL-LINK-HERE"
+USER_MANUAL_URL = "https://raw.githubusercontent.com/sparkz00705/gxp-ai-readiness-governance/main/GxP_AI_Readiness_Governance_User_Manual.pdf"
 
 st.set_page_config(
     page_title="GxP AI Readiness & Governance Assessment",
