@@ -413,3 +413,17 @@ st.download_button(
 )
 
 st.caption("V2 prototype — keep this app in a separate repository/deployment from your existing live PM Risk & Issue Dashboard.")
+st.divider()
+
+st.markdown(
+    """
+    <div style="text-align:center; font-size:0.85rem;">
+        © 2026 Sriram Sampath | GxP AI Readiness & Governance Assessment<br>
+        Independent professional project |
+        <a href="https://www.linkedin.com/in/sriramsampath81/" target="_blank">
+            Connect with me on LinkedIn
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
