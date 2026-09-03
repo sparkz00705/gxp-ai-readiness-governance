@@ -1,7 +1,21 @@
 
 import streamlit as st
 from datetime import date
+import requests
 
+
+
+COUNTER_URL = "https://abacus.jasoncameron.dev/hit/sriram-gxp-ai-readiness/visits"
+
+def get_visit_count():
+    try:
+        response = requests.get(COUNTER_URL, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+        return data.get("value", 0)
+    except Exception:
+        return None
+        
 USER_MANUAL_URL = "https://raw.githubusercontent.com/sparkz00705/gxp-ai-readiness-governance/main/GxP_AI_Readiness_Governance_User_Manual.pdf"
 
 st.set_page_config(
@@ -477,3 +491,26 @@ st.markdown("""
 <a href="https://ai-risk-issue-dashboard.streamlit.app/" target="_blank">Previous Project: Intelligent Risk & Issue Management Dashboard</a>
 </div>
 """, unsafe_allow_html=True)
+# Visitor count
+visit_count = get_visit_count()
+
+st.divider()
+
+if visit_count is not None:
+    st.markdown(
+        f"""
+        <div style="text-align:center; font-size:0.85rem;">
+            👁️ <b>Visits: {visit_count}</b>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+else:
+    st.markdown(
+        """
+        <div style="text-align:center; font-size:0.85rem;">
+            👁️ <b>Visits: —</b>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
