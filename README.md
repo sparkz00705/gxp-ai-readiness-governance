@@ -1,18 +1,23 @@
-# GxP AI Readiness & Governance Assessment — V3
+# GxP AI Readiness & Governance Assessment
 
-V3 adds:
-- Professional landing area
-- One-click GMP sample assessment
-- Assessment methodology guidance
-- Dedicated User Manual link placeholder
-- GxP coverage: GMP, GLP, GCP, GDP, PV/GVP, GDocP/Data Integrity, CSV/CSA and cross-functional GxP
-- Deterministic, explainable core scoring
-- Assessment summary download
+Life Sciences-focused Project Management decision-support tool for initial assessment of AI initiatives across GxP contexts.
 
-## User Manual
-Host `GxP_AI_Readiness_Governance_User_Manual.pdf` separately and replace:
-`https://YOUR-USER-MANUAL-LINK-HERE`
-in `app.py` with the final hosted URL.
+## Features
+- GMP, GLP, GCP, GDP, PV/GVP, GDocP/Data Integrity, CSV/CSA and cross-functional GxP coverage
+- One-click sample assessment
+- Assessment methodology
+- Deterministic readiness scoring
+- Green/Amber/Red status
+- Governance recommendation
+- PDF assessment-summary download
+- Standalone User Manual link
+- Link to the previous Intelligent Risk & Issue Management Dashboard
+
+## User manual
+https://raw.githubusercontent.com/sparkz00705/gxp-ai-readiness-governance/main/GxP_AI_Readiness_Governance_User_Manual.pdf
+
+## Related project
+https://ai-risk-issue-dashboard.streamlit.app/
 
 ## Run locally
 ```bash
@@ -20,8 +25,8 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## Deploy
-Use a separate GitHub repository and Streamlit deployment from the existing live Risk & Issue Dashboard.
+## Governance boundary
+This is an initial readiness/governance aid. It does not determine regulatory compliance and does not replace qualified QA, Validation, Regulatory, Clinical, Medical, Manufacturing, Pharmacovigilance, Data, Privacy, Security or business review.
 
-## Important
-This is an initial project-readiness / governance aid. It does not determine regulatory compliance.
+## Related project
+https://ai-risk-issue-dashboard.streamlit.app/

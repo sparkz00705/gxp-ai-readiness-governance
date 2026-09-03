@@ -2,7 +2,7 @@
 import streamlit as st
 from datetime import date
 
-USER_MANUAL_URL = "https://YOUR-USER-MANUAL-LINK-HERE"
+USER_MANUAL_URL = "https://raw.githubusercontent.com/sparkz00705/gxp-ai-readiness-governance/main/GxP_AI_Readiness_Governance_User_Manual.pdf"
 
 st.set_page_config(
     page_title="GxP AI Readiness & Governance Assessment",
@@ -191,6 +191,15 @@ with nav_c:
 
 if st.session_state.get("show_sample"):
     show_sample_assessment()
+
+with st.expander("Previous PM Portfolio Project", expanded=False):
+    st.markdown("""
+**Intelligent Risk & Issue Management Dashboard**
+
+Earlier independent Project Management tool focused on real-time risk and issue visibility.
+
+[Open the Intelligent Risk & Issue Management Dashboard](https://ai-risk-issue-dashboard.streamlit.app/)
+""")
 
 with st.expander("Assessment Methodology", expanded=False):
     st.markdown(
@@ -405,11 +414,53 @@ Final decisions should be made by appropriately qualified stakeholders.
 """
 st.markdown(summary)
 
+# PDF export
+def build_pdf(summary_text: str) -> bytes:
+    from io import BytesIO
+    from reportlab.lib.pagesizes import A4
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.enums import TA_CENTER
+
+    buf = BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=42, rightMargin=42, topMargin=42, bottomMargin=42,
+                            title="GxP AI Readiness & Governance Assessment", author="Sriram Sampath")
+    styles = getSampleStyleSheet()
+    styles.add(ParagraphStyle(name="GXPTitle", parent=styles["Title"], alignment=TA_CENTER, fontSize=17, leading=21, spaceAfter=14))
+    styles.add(ParagraphStyle(name="GXPBody", parent=styles["BodyText"], fontSize=9.2, leading=12.5, spaceAfter=5))
+    story=[Paragraph("GxP AI Readiness & Governance Assessment", styles["GXPTitle"]),
+           Paragraph("Project Readiness & Governance Summary", styles["Heading2"]), Spacer(1,6)]
+    for raw in summary_text.splitlines():
+        line=raw.strip()
+        if not line:
+            story.append(Spacer(1,3)); continue
+        if line.startswith("# "): continue
+        if line.startswith("## "): story.append(Paragraph(line[3:].replace("**", ""), styles["Heading2"]))
+        elif line.startswith("### "): story.append(Paragraph(line[4:].replace("**", ""), styles["Heading3"]))
+        elif line.startswith("- "): story.append(Paragraph("• "+line[2:].replace("**", ""), styles["GXPBody"]))
+        else:
+            safe=line.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;").replace("**","")
+            story.append(Paragraph(safe, styles["GXPBody"]))
+    story += [Spacer(1,8), Paragraph("© 2026 Sriram Sampath. All rights reserved. Independent professional project.", styles["GXPBody"]),
+              Paragraph("LinkedIn: https://www.linkedin.com/in/sriramsampath81/", styles["GXPBody"]),
+              Paragraph("Important: This assessment is a project-governance/readiness aid. It does not determine regulatory compliance and does not replace qualified stakeholder review.", styles["GXPBody"])]
+    doc.build(story)
+    return buf.getvalue()
+
+pdf_bytes = build_pdf(summary)
 st.download_button(
-    "Download assessment summary",
-    data=summary,
-    file_name="gxp_ai_readiness_assessment.md",
-    mime="text/markdown",
+    "📄 Download Assessment Summary (PDF)",
+    data=pdf_bytes,
+    file_name="gxp_ai_readiness_assessment.pdf",
+    mime="application/pdf",
+    type="primary",
 )
 
-st.caption("V2 prototype — keep this app in a separate repository/deployment from your existing live PM Risk & Issue Dashboard.")
+st.markdown("""
+<div style="text-align:center; font-size:0.85rem;">
+<b>GxP AI Readiness & Governance Assessment</b><br>
+© 2026 Sriram Sampath. All rights reserved.<br>
+<a href="https://www.linkedin.com/in/sriramsampath81/" target="_blank">LinkedIn</a> |
+<a href="https://ai-risk-issue-dashboard.streamlit.app/" target="_blank">Previous Project: Intelligent Risk & Issue Management Dashboard</a>
+</div>
+""", unsafe_allow_html=True)
