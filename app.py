@@ -415,7 +415,16 @@ Final decisions should be made by appropriately qualified stakeholders.
 st.markdown(summary)
 
 # PDF export
+# PDF export dependency guard
+try:
+    import reportlab  # noqa: F401
+    REPORTLAB_AVAILABLE = True
+except ImportError:
+    REPORTLAB_AVAILABLE = False
+
 def build_pdf(summary_text: str) -> bytes:
+    if not REPORTLAB_AVAILABLE:
+        raise RuntimeError("PDF export requires reportlab. Add reportlab to requirements.txt and redeploy.")
     from io import BytesIO
     from reportlab.lib.pagesizes import A4
     from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
@@ -447,14 +456,18 @@ def build_pdf(summary_text: str) -> bytes:
     doc.build(story)
     return buf.getvalue()
 
-pdf_bytes = build_pdf(summary)
-st.download_button(
-    "📄 Download Assessment Summary (PDF)",
-    data=pdf_bytes,
-    file_name="gxp_ai_readiness_assessment.pdf",
-    mime="application/pdf",
-    type="primary",
-)
+if REPORTLAB_AVAILABLE:
+    pdf_bytes = build_pdf(summary)
+    st.download_button(
+        "📄 Download Assessment Summary (PDF)",
+        data=pdf_bytes,
+        file_name="gxp_ai_readiness_assessment.pdf",
+        mime="application/pdf",
+        type="primary",
+    )
+else:
+    st.error("PDF export is unavailable because the reportlab package is not installed. "
+             "Please redeploy after updating requirements.txt.")
 
 st.markdown("""
 <div style="text-align:center; font-size:0.85rem;">
