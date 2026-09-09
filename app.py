@@ -1482,23 +1482,42 @@ st.divider()
 
 st.markdown(
     """
-    <div style="text-align:center; font-size:0.85rem; line-height:1.8;">
+    <div style="
+        text-align: center;
+        padding: 24px 10px;
+        margin-top: 30px;
+        border-top: 1px solid #ddd;
+        color: #555;
+        font-size: 14px;
+    ">
 
-        <b>GxP AI Readiness & Governance Assessment</b><br>
+        <div style="font-weight: 600; margin-bottom: 10px;">
+            GxP AI Readiness & Governance Assessment
+        </div>
 
-        © 2026 Sriram Sampath. All rights reserved.<br>
+        <div style="margin-bottom: 10px;">
+            © 2026 Sriram Sampath. All rights reserved.
+        </div>
 
-        <a href="https://www.linkedin.com/in/sriramsampath81/" target="_blank">
-            LinkedIn
-        </a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a href="https://ai-risk-issue-dashboard.streamlit.app/" target="_blank">
-            Project Management Dashboard
-        </a>
+        <div>
+            <a href="https://www.linkedin.com/in/sriramsampath81/"
+               target="_blank"
+               style="text-decoration: none;">
+                LinkedIn
+            </a>
+
+            <span style="margin: 0 10px;">|</span>
+
+            <a href="https://ai-risk-issue-dashboard.streamlit.app/"
+               target="_blank"
+               style="text-decoration: none;">
+                Previous Project: Intelligent Risk & Issue Management Dashboard
+            </a>
+        </div>
 
     </div>
     """,
-    unsafe_allow_html=True,
+    unsafe_allow_html=True
 )
 
 
