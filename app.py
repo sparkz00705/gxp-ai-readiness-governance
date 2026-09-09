@@ -1480,7 +1480,7 @@ else:
 
 st.divider()
 
-st.markdown(
+st.html(
     """
     <div style="
         text-align: center;
@@ -1516,8 +1516,7 @@ st.markdown(
         </div>
 
     </div>
-    """,
-    unsafe_allow_html=True
+    """
 )
 
 
