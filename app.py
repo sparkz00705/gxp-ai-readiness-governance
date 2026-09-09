@@ -1481,33 +1481,23 @@ else:
 st.divider()
 
 st.markdown(
+    """
+    <div style="text-align:center; font-size:0.85rem; line-height:1.8;">
 
-    f"""
-    <div style="text-align:center; font-size:0.85rem;">
+        <b>GxP AI Readiness & Governance Assessment</b><br>
 
-        <b>
-            GxP AI Readiness & Governance Assessment
-        </b>
+        © 2026 Sriram Sampath. All rights reserved.<br>
 
-        <br>
-
-        © 2026 Sriram Sampath. All rights reserved.
-
-        <br>
-
-        <a href="{LINKEDIN_URL}" target="_blank">
+        <a href="https://www.linkedin.com/in/sriramsampath81/" target="_blank">
             LinkedIn
         </a>
-
-        &nbsp;|&nbsp;
-
-        <a href="{PREVIOUS_PROJECT_URL}" target="_blank">
-            Previous PM Project: Intelligent Risk & Issue Management Dashboard
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="https://ai-risk-issue-dashboard.streamlit.app/" target="_blank">
+            Project Management Dashboard
         </a>
 
     </div>
     """,
-
     unsafe_allow_html=True,
 )
 
