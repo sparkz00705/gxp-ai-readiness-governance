@@ -1511,7 +1511,7 @@ st.html(
             <a href="https://ai-risk-issue-dashboard.streamlit.app/"
                target="_blank"
                style="text-decoration: none;">
-                Previous Project: Intelligent Risk & Issue Management Dashboard
+                Previous Project Management Dashboard
             </a>
         </div>
 
